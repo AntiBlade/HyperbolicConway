@@ -73,7 +73,7 @@ dictNeighbors = {i : j for i, j in iter.izip(labels, allNeighbors)}
 
 # print dictNeighbors
 # print letterNums
-      
+  
 """
 Now for the more Conway-ish things; getting every possible 24-bit string of 
 0s and 1s in order to check every initial state, pairing them with the labels, 
@@ -291,9 +291,14 @@ for j in bitStrings:
         p2 = tuple(Conway(list(p2)))
         
     cycles = list(nx.simple_cycles(conwayGraph))
+<<<<<<< HEAD
     f.write(len(cycles[0]))
     f.write('\n')
 sdgsDGASG
 ASG
 SAFGAS
 FG
+=======
+    f.write(str(len(cycles[0])))
+    f.write('\n')
+>>>>>>> 48771d6b15e7b8fb7a5035d05d5da3615daede0a
