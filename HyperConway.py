@@ -10,9 +10,7 @@ them to make a dictionary that associates every letter with a permutation.
 """
 
 permList = [list(i) for i in list(iter.permutations([1,2,3,4,]))]
-labels = 'a b c d e f g h i j k l m n o p q r s t u v w x'.split()
-permLabels = {i: j for i, j in iter.izip(labels, permList)}
-letterNums = {i : j for i, j in iter.izip(labels, range(23))}
+permLabels = {i : j for i, j in iter.izip(range(24), permList)}
 
 """
 Here are the functions for generating the neighbors of a permutation; I tried 
@@ -69,10 +67,6 @@ def makeNeighbors(perm):
     return neighborLabels
 
 allNeighbors = [makeNeighbors(i) for i in permList] 
-dictNeighbors = {i : j for i, j in iter.izip(labels, allNeighbors)}
-
-# print dictNeighbors
-# print letterNums
   
 """
 Now for the more Conway-ish things; getting every possible 24-bit string of 
@@ -92,178 +86,21 @@ the bracketed numbers in variable total to match the numbers that correspond to 
 in the neighbors lists. 
 """
 
+def resultCalc(List, pos):
+    global allNeighbors
+    total = 0
+    for i in allNeighbors[pos]:
+        total += List[i]
+    return total 
+
 def Conway(bitNum):
     result = []
     bitNum = [int(i) for i in list(bitNum)]
     for i in range(len(bitNum)):
-        if i == 0:
-            total = bitNum[6] + bitNum[2] + bitNum[1] + bitNum[18] + bitNum[9] + bitNum[8] + bitNum[3] + bitNum[12] + bitNum[4] + bitNum[16]
-            if (bitNum[0] == 1 and (total == 2 or total ==3)) or (bitNum[0] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-                
-        elif i == 1:
-            total = bitNum[7] + bitNum[4] + bitNum[0] + bitNum[12] + bitNum[11] + bitNum[10] + bitNum[5] + bitNum[18] + bitNum[2] + bitNum[22]
-            if (bitNum[1] == 1 and (total == 2 or total ==3)) or (bitNum[1] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-        
-        elif i == 2:
-            total = bitNum[12] + bitNum[0] + bitNum[3] + bitNum[19] + bitNum[15] + bitNum[14] + bitNum[1] + bitNum[6] + bitNum[5] + bitNum[10]
-            if (bitNum[2] == 1 and (total == 2 or total ==3)) or (bitNum[2] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-                
-        elif i == 3:
-            total = bitNum[13] + bitNum[5] + bitNum[2] + bitNum[6] + bitNum[17] + bitNum[16] + bitNum[4] + bitNum[19] + bitNum[0] + bitNum[20]
-            if (bitNum[3] == 1 and (total == 2 or total ==3)) or (bitNum[3] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)        
-        
-        elif i == 4:
-            total = bitNum[12] + bitNum[0] + bitNum[3] + bitNum[19] + bitNum[15] + bitNum[14] + bitNum[1] + bitNum[6] + bitNum[5] + bitNum[10]
-            if (bitNum[4] == 1 and (total == 2 or total ==3)) or (bitNum[4] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-        
-        elif i == 5:
-            total = bitNum[18] + bitNum[1] + bitNum[5] + bitNum[13] + bitNum[21] + bitNum[20] + bitNum[0] + bitNum[7] + bitNum[3] + bitNum[8]
-            if (bitNum[5] == 1 and (total == 2 or total ==3)) or (bitNum[5] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0) 
-        
-        elif i == 6:
-            total = bitNum[0] + bitNum[8] + bitNum[7] + bitNum[20] + bitNum[3] + bitNum[2] + bitNum[9] + bitNum[14] + bitNum[10] + bitNum[17]
-            if (bitNum[6] == 1 and (total == 2 or total ==3)) or (bitNum[6] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-        
-        elif i == 7:
-            total = bitNum[1] + bitNum[10] + bitNum[6] + bitNum[14] + bitNum[5] + bitNum[4] + bitNum[11] + bitNum[20] + bitNum[8] + bitNum[23]
-            if (bitNum[7] == 1 and (total == 2 or total ==3)) or (bitNum[7] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-        
-        elif i == 8:
-            total = bitNum[14] + bitNum[6] + bitNum[9] + bitNum[21] + bitNum[13] + bitNum[12] + bitNum[7] + bitNum[0] + bitNum[11] + bitNum[4]
-            if (bitNum[8] == 1 and (total == 2 or total ==3)) or (bitNum[8] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-        
-        elif i == 9:
-            total = bitNum[15] + bitNum[11] + bitNum[8] + bitNum[0] + bitNum[16] + bitNum[17] + bitNum[10] + bitNum[21] + bitNum[6] + bitNum[18]
-            if (bitNum[9] == 1 and (total == 2 or total ==3)) or (bitNum[9] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-        
-        elif i == 10:
-            total = bitNum[20] + bitNum[7] + bitNum[11] + bitNum[15] + bitNum[19] + bitNum[18] + bitNum[6] + bitNum[1] + bitNum[9] + bitNum[2]
-            if (bitNum[10] == 1 and (total == 2 or total ==3)) or (bitNum[10] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-        
-        elif i == 11:
-            total = bitNum[21] + bitNum[9] + bitNum[10] + bitNum[1] + bitNum[22] + bitNum[23] + bitNum[8] + bitNum[15] + bitNum[7] + bitNum[12]
-            if (bitNum[11] == 1 and (total == 2 or total ==3)) or (bitNum[11] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-        
-        elif i == 12:
-            total = bitNum[2] + bitNum[14] + bitNum[13] + bitNum[22] + bitNum[1] + bitNum[0] + bitNum[15] + bitNum[8] + bitNum[16] + bitNum[11]
-            if (bitNum[12] == 1 and (total == 2 or total ==3)) or (bitNum[12] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-        
-        
-        elif i == 13:
-            total = bitNum[3] + bitNum[16] + bitNum[12] + bitNum[8] + bitNum[4] + bitNum[5] + bitNum[17] + bitNum[22] + bitNum[14] + bitNum[21]
-            if (bitNum[13] == 1 and (total == 2 or total ==3)) or (bitNum[13] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-        
-        elif i == 14:
-            total = bitNum[8] + bitNum[12] + bitNum[15] + bitNum[23] + bitNum[7] + bitNum[6] + bitNum[13] + bitNum[2] + bitNum[17] + bitNum[5]
-            if (bitNum[14] == 1 and (total == 2 or total ==3)) or (bitNum[14] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-        
-        elif i == 15:
-            total = bitNum[9] + bitNum[17] + bitNum[14] + bitNum[2] + bitNum[10] + bitNum[11] + bitNum[16] + bitNum[23] + bitNum[12] + bitNum[19]
-            if (bitNum[15] == 1 and (total == 2 or total ==3)) or (bitNum[15] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-        
-        elif i == 16:
-            total = bitNum[22] + bitNum[13] + bitNum[12] + bitNum[9] + bitNum[18] + bitNum[19] + bitNum[12] + bitNum[3] + bitNum[15] + bitNum[0]
-            if (bitNum[16] == 1 and (total == 2 or total ==3)) or (bitNum[16] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-        
-        elif i == 17:
-            total = bitNum[23] + bitNum[15] + bitNum[16] + bitNum[3] + bitNum[20] + bitNum[21] + bitNum[14] + bitNum[9] + bitNum[13] + bitNum[6]
-            if (bitNum[17] == 1 and (total == 2 or total ==3)) or (bitNum[17] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-        
-        elif i == 18:
-            total = bitNum[8] + bitNum[20] + bitNum[19] + bitNum[16] + bitNum[0] + bitNum[1] + bitNum[21] + bitNum[10] + bitNum[22] + bitNum[9]
-            if (bitNum[18] == 1 and (total == 2 or total ==3)) or (bitNum[18] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-        
-        elif i == 19:
-            total = bitNum[5] + bitNum[22] + bitNum[18] + bitNum[10] + bitNum[2] + bitNum[3] + bitNum[23] + bitNum[16] + bitNum[20] + bitNum[15]
-            if (bitNum[19] == 1 and (total == 2 or total ==3)) or (bitNum[19] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-        
-        elif i == 20:
-            total = bitNum[10] + bitNum[18] + bitNum[21] + bitNum[17] + bitNum[6] + bitNum[7] + bitNum[19] + bitNum[4] + bitNum[23] + bitNum[3]
-            if (bitNum[20] == 1 and (total == 2 or total ==3)) or (bitNum[20] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-        
-        elif i == 21:
-            total = bitNum[11] + bitNum[23] + bitNum[20] + bitNum[4] + bitNum[8] + bitNum[9] + bitNum[22] + bitNum[17] + bitNum[18] + bitNum[13]
-            if (bitNum[21] == 1 and (total == 2 or total ==3)) or (bitNum[21] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-        
-        elif i == 22:
-            total = bitNum[16] + bitNum[19] + bitNum[23] + bitNum[11] + bitNum[12] + bitNum[13] + bitNum[18] + bitNum[5] + bitNum[21] + bitNum[1]
-            if (bitNum[22] == 1 and (total == 2 or total ==3)) or (bitNum[22] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)
-        
-        elif i == 23:
-            total = bitNum[17] + bitNum[21] + bitNum[22] + bitNum[5] + bitNum[14] + bitNum[15] + bitNum[20] + bitNum[11] + bitNum[19] + bitNum[7]
-            if (bitNum[23] == 1 and (total == 2 or total ==3)) or (bitNum[23] == 0 and total == 3):
-                result.append(1)
-            else: 
-                result.append(0)        
+        if (bitNum[i] == 1 and (resultCalc(bitNum, i) == 2 or resultCalc(bitNum, i) ==3)) or (bitNum[i] == 0 and resultCalc(bitNum, i) == 3):
+            result.append(1)
+        else: 
+            result.append(0)
     return result
 
 """
@@ -274,7 +111,9 @@ printed so you can see the lengths of every single cycle (considering there are
 16 million or so this is a crazy list. A later optimization will be to remove 
 all duplicate cycles, but this will require active checking of what particular
 cycles have been attained with each new starting value.  
-""" 
+"""
+
+"""
 for j in bitStrings:
     conwayGraph = nx.DiGraph()
 
@@ -291,3 +130,9 @@ for j in bitStrings:
     cycles = list(nx.simple_cycles(conwayGraph))
     f.write(str(len(cycles[0])))
     f.write('\n')
+"""
+
+print bitStrings[11]
+result = Conway(bitStrings[11])
+print result
+print Conway(result)
