@@ -293,5 +293,3 @@ for j in bitStrings:
     cycles = list(nx.simple_cycles(conwayGraph))
     f.write(len(cycles[0]))
     f.write('\n')
-
-print "hey there sexy"
