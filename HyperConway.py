@@ -291,14 +291,6 @@ for j in bitStrings:
         p2 = tuple(Conway(list(p2)))
         
     cycles = list(nx.simple_cycles(conwayGraph))
-<<<<<<< HEAD
     f.write(len(cycles[0]))
     f.write('\n')
-sdgsDGASG
-ASG
-SAFGAS
-FG
-=======
-    f.write(str(len(cycles[0])))
-    f.write('\n')
->>>>>>> 48771d6b15e7b8fb7a5035d05d5da3615daede0a
+
