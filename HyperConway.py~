@@ -294,4 +294,3 @@ for j in bitStrings:
     f.write(len(cycles[0]))
     f.write('\n')
 
-print "hey there sexy"
