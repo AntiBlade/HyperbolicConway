@@ -76,6 +76,7 @@ life/death algorithm itself, which will be run once on each initial state.
 """
 
 bitStrings = ["".join(seq) for seq in iter.product("01", repeat = 24)]
+bitStrings = bitStrings[8388608:12582912]
 bitStrings = tuple(bitStrings)
 
 """
@@ -113,7 +114,6 @@ all duplicate cycles, but this will require active checking of what particular
 cycles have been attained with each new starting value.  
 """
 
-"""
 for j in bitStrings:
     conwayGraph = nx.DiGraph()
 
@@ -130,9 +130,3 @@ for j in bitStrings:
     cycles = list(nx.simple_cycles(conwayGraph))
     f.write(str(len(cycles[0])))
     f.write('\n')
-"""
-
-print bitStrings[11]
-result = Conway(bitStrings[11])
-print result
-print Conway(result)
