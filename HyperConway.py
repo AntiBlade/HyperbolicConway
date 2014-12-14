@@ -291,5 +291,5 @@ for j in bitStrings:
         p2 = tuple(Conway(list(p2)))
         
     cycles = list(nx.simple_cycles(conwayGraph))
-    f.write(len(cycles[0]))
+    f.write(str(len(cycles[0])))
     f.write('\n')
