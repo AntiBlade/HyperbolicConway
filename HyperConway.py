@@ -103,14 +103,12 @@ def Conway(bitNum):
             else: 
                 result.append(0)
                 
-        # Start copying here
         elif i == 1:
             total = bitNum[7] + bitNum[4] + bitNum[0] + bitNum[12] + bitNum[11] + bitNum[10] + bitNum[5] + bitNum[18] + bitNum[2] + bitNum[22]
             if (bitNum[1] == 1 and (total == 2 or total ==3)) or (bitNum[1] == 0 and total == 3):
                 result.append(1)
             else: 
                 result.append(0)
-        # End copying here
         
         elif i == 2:
             total = bitNum[12] + bitNum[0] + bitNum[3] + bitNum[19] + bitNum[15] + bitNum[14] + bitNum[1] + bitNum[6] + bitNum[5] + bitNum[10]
