@@ -119,6 +119,10 @@ for j in bitStrings:
 
     p1 = tuple([int(i) for i in list(j)])
     p2 = tuple(Conway(list(p1)))
+    
+    f.write('Starting String: ' + str(p1) + '\n')
+    f.write('Number Alive: ' + str(sum(p1)) + '\n')
+    
 
     for i in range(1, 100): 
         conwayGraph.add_node(p1)
@@ -128,5 +132,7 @@ for j in bitStrings:
         p2 = tuple(Conway(list(p2)))
         
     cycles = list(nx.simple_cycles(conwayGraph))
-    f.write(str(len(cycles[0])))
+    f.write('Head Length: ' + str(len(conwayGraph)-len(cycles[0])) + '\n')
+    f.write('Tail Length:' + str(len(cycles[0])))
+    f.write('\n')
     f.write('\n')
